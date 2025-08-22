@@ -1,3 +1,5 @@
+require_relative 'board'
+
 class Game
   attr_reader :player_one, :player_two, :game_over
 
@@ -21,6 +23,12 @@ class Game
       return input.to_i if valid_input?(input)
     end
   end
+
+  def game_over_row?(row, play)
+  end
 end
 
-game = Game.new
+play = Board.new
+play.setup
+# game = Game.new
+# p game.game_over_row?(0, play)

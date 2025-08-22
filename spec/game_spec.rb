@@ -1,4 +1,4 @@
-require_relative 'class_game'
+require_relative 'game'
 system 'clear'
 
 describe Game do
@@ -17,14 +17,20 @@ describe Game do
 
   describe 'player_input' do
     subject(:game_two) { described_class.new }
-    let(:input) { 15 }
-    before do
-      allow(game_two).to receive(:gets).and_return(input)
-    end
-    describe 'invalid input continues loop' do
-      it 'expected wrong input' do
-        expect(game_two.player_input).to receive(:gets).with(input)
+    context 'valid input' do
+      before do
+        allow(game_two).to receive(:player_input).and_return(5)
       end
+      it 'returns 5' do
+        expect(game_two.player_input).to eq(5)
+      end
+    end
+  end
+
+  describe 'game is over' do
+    subject(:game_three) { described_class.new }
+    it 'returns true' do
+      expect(game_three.game_over?).to be true
     end
   end
 end
