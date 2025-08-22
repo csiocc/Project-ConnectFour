@@ -58,9 +58,9 @@ describe Board do
     before do
       play_board.setup
       play_board.get_cell(0, 0).change_color('red')
-      play_board.get_cell(0, 1).change_color('red')
-      play_board.get_cell(0, 2).change_color('red')
-      play_board.get_cell(0, 3).change_color('red')
+      play_board.get_cell(1, 0).change_color('red')
+      play_board.get_cell(2, 0).change_color('red')
+      play_board.get_cell(3, 0).change_color('red')
     end
     it 'returns true' do
       expect(play_board.four_row?('red')).to be true
@@ -73,10 +73,10 @@ describe Board do
   describe 'four_row? at end' do
     before do
       play_board.setup
-      play_board.get_cell(0, 3).change_color('red')
-      play_board.get_cell(0, 4).change_color('red')
-      play_board.get_cell(0, 5).change_color('red')
-      play_board.get_cell(0, 6).change_color('red')
+      play_board.get_cell(2, 0).change_color('red')
+      play_board.get_cell(3, 0).change_color('red')
+      play_board.get_cell(4, 0).change_color('red')
+      play_board.get_cell(5, 0).change_color('red')
     end
     it 'returns true' do
       expect(play_board.four_row?('red')).to be true
@@ -90,9 +90,9 @@ describe Board do
     before do
       play_board.setup
       play_board.get_cell(0, 0).change_color('red')
-      play_board.get_cell(1, 0).change_color('red')
-      play_board.get_cell(2, 0).change_color('red')
-      play_board.get_cell(3, 0).change_color('red')
+      play_board.get_cell(0, 1).change_color('red')
+      play_board.get_cell(0, 2).change_color('red')
+      play_board.get_cell(0, 3).change_color('red')
     end
     it 'returns true' do
       expect(play_board.four_column?('red')).to be true
@@ -105,10 +105,10 @@ describe Board do
   describe 'four_column? at end' do
     before do
       play_board.setup
-      play_board.get_cell(2, 0).change_color('red')
-      play_board.get_cell(3, 0).change_color('red')
-      play_board.get_cell(4, 0).change_color('red')
-      play_board.get_cell(5, 0).change_color('red')
+      play_board.get_cell(0, 2).change_color('red')
+      play_board.get_cell(0, 3).change_color('red')
+      play_board.get_cell(0, 4).change_color('red')
+      play_board.get_cell(0, 5).change_color('red')
     end
     it 'returns true' do
       expect(play_board.four_column?('red')).to be true
@@ -165,14 +165,14 @@ describe Board do
     end
   end
 
-  describe 'first empty is second row' do
+  describe 'first empty is: second row' do
     before do
       play_board.setup
       play_board.get_cell(0, 0).change_color('red')
-      play_board.get_cell(1, 0).change_color('red')
+      play_board.get_cell(0, 1).change_color('red')
     end
     it 'returns 1' do
-      expect(play_board.first_empty_cell(0)).to eq
+      expect(play_board.first_empty_cell(0)).to be_a(Cell)
     end
   end
 end

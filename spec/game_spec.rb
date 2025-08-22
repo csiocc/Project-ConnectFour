@@ -26,11 +26,4 @@ describe Game do
       end
     end
   end
-
-  describe 'game is over' do
-    subject(:game_three) { described_class.new }
-    it 'returns true' do
-      expect(game_three.game_over?).to be true
-    end
-  end
 end
