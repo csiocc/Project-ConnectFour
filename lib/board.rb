@@ -26,29 +26,33 @@ class Board
     @cells[xd][yd]
   end
 
-  def four_row?(row, color)
-    row_arr = @cells[row]
-    row_arr.length.times do |i|
-      if row_arr[i].color == color &&
-         row_arr[i + 1].color == color &&
-         row_arr[i + 2].color == color &&
-         row_arr[i + 3].color == color
-        return true
+  def four_row?(color)
+    @row.times do |i|
+      row_arr = @cells[i]
+      row_arr.length.times do |i|
+        if row_arr[i].color == color &&
+           row_arr[i + 1].color == color &&
+           row_arr[i + 2].color == color &&
+           row_arr[i + 3].color == color
+          return true
+        end
       end
     end
     false
   end
 
-  def four_column?(column, color)
-    column_arr = @cells.map do |xd|
-      xd[column]
-    end
-    column_arr.length.times do |i|
-      if column_arr[i].color == color &&
-         column_arr[i + 1].color == color &&
-         column_arr[i + 2].color == color &&
-         column_arr[i + 3].color == color
-        return true
+  def four_column?(color)
+    @column.times do |column|
+      column_arr = @cells.map do |xd|
+        xd[column]
+      end
+      column_arr.length.times do |i|
+        if column_arr[i]&.color == color &&
+           column_arr[i + 1]&.color == color &&
+           column_arr[i + 2]&.color == color &&
+           column_arr[i + 3]&.color == color
+          return true
+        end
       end
     end
     false
@@ -91,14 +95,35 @@ class Board
     end
     puts '   ' + (0...@column).map { |c| c.to_s.center(3) }.join # column numbers
   end
+
+  def first_empty_cell(column)
+    return nil unless (0...@row).include?(column) # Spaltenbereich prüfen
+
+    index = (0...@row).find do |row|
+      @cells[row] && @cells[row][column] && @cells[row][column].color.nil?
+    end
+    return nil if index.nil?
+
+    @cells[index][column]
+  end
+
+  def column_full?(column)
+    return true if first_empty_cell(column).nil?
+
+    false
+  end
+
+  def place(column, color)
+    first_empty_cell(column).change_color(color) unless column_full?(column)
+  end
 end
 
 class Cell
   attr_reader :xd, :yd, :color
 
   def initialize(xd, yd, color = nil)
-    @xd = xd # column
-    @yd = yd # row
+    @xd = xd
+    @yd = yd
     @color = color
     @value = 'O'
   end

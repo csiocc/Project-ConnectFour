@@ -63,10 +63,10 @@ describe Board do
       play_board.get_cell(0, 3).change_color('red')
     end
     it 'returns true' do
-      expect(play_board.four_row?(0, 'red')).to be true
+      expect(play_board.four_row?('red')).to be true
     end
     it 'returns false' do
-      expect(play_board.four_row?(0, 'yellow')).to be false
+      expect(play_board.four_row?('yellow')).to be false
     end
   end
 
@@ -79,10 +79,10 @@ describe Board do
       play_board.get_cell(0, 6).change_color('red')
     end
     it 'returns true' do
-      expect(play_board.four_row?(0, 'red')).to be true
+      expect(play_board.four_row?('red')).to be true
     end
     it 'returns false' do
-      expect(play_board.four_row?(0, 'yellow')).to be false
+      expect(play_board.four_row?('yellow')).to be false
     end
   end
 
@@ -95,10 +95,10 @@ describe Board do
       play_board.get_cell(3, 0).change_color('red')
     end
     it 'returns true' do
-      expect(play_board.four_column?(0, 'red')).to be true
+      expect(play_board.four_column?('red')).to be true
     end
     it 'returns false' do
-      expect(play_board.four_column?(0, 'yellow')).to be false
+      expect(play_board.four_column?('yellow')).to be false
     end
   end
 
@@ -111,10 +111,10 @@ describe Board do
       play_board.get_cell(5, 0).change_color('red')
     end
     it 'returns true' do
-      expect(play_board.four_column?(0, 'red')).to be true
+      expect(play_board.four_column?('red')).to be true
     end
     it 'returns false' do
-      expect(play_board.four_column?(0, 'yellow')).to be false
+      expect(play_board.four_column?('yellow')).to be false
     end
   end
 
@@ -162,6 +162,17 @@ describe Board do
     end
     it 'returns false' do
       expect(play_board.four_diagonal?('yellow')).to be false
+    end
+  end
+
+  describe 'first empty is second row' do
+    before do
+      play_board.setup
+      play_board.get_cell(0, 0).change_color('red')
+      play_board.get_cell(1, 0).change_color('red')
+    end
+    it 'returns 1' do
+      expect(play_board.first_empty_cell(0)).to eq
     end
   end
 end
