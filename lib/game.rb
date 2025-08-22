@@ -1,11 +1,12 @@
 require_relative 'board'
+require_relative 'player'
 
 class Game
   attr_reader :player_one, :player_two, :game_over
 
   def initialize(player_one = nil, player_two = nil)
-    @player_one = player_one
-    @player_two = player_two
+    @player_one = Player.new(:player_one, :red)
+    @player_two = Player.new(:player_two, :yellow)
     @game_over = false
   end
 
@@ -30,5 +31,6 @@ end
 
 play = Board.new
 play.setup
+play.render
 # game = Game.new
 # p game.game_over_row?(0, play)

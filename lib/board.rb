@@ -1,3 +1,6 @@
+require 'rainbow/refinement'
+using Rainbow
+
 class Board
   attr_reader :row, :column, :cells
 
@@ -68,6 +71,26 @@ class Board
       diag.each_cons(4).any? { |group| group.all? { |cell| cell.color == color } }
     end
   end
+
+  def render
+    system('clear') || system('cls')
+
+    @cells.reverse_each.with_index do |row, y|
+      print (@row - 1 - y).to_s.ljust(3) # row numbers
+      row.each do |cell|
+        symbol = 'O'
+        if cell.color == :red
+          print " #{symbol.color(:red)} "
+        elsif cell.color == :yellow
+          print " #{symbol.color(:yellow)} "
+        else
+          print ' . '
+        end
+      end
+      print "\n"
+    end
+    puts '   ' + (0...@column).map { |c| c.to_s.center(3) }.join # column numbers
+  end
 end
 
 class Cell
@@ -77,6 +100,7 @@ class Cell
     @xd = xd # column
     @yd = yd # row
     @color = color
+    @value = 'O'
   end
 
   def show_cords
