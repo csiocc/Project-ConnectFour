@@ -23,13 +23,13 @@ class Board
   end
 
   def get_cell(xd, yd)
-    @cells[xd][yd]
+    @cells[yd][xd]
   end
 
   def four_row?(color)
     @row.times do |i|
       row_arr = @cells[i]
-      row_arr.length.times do |i|
+      (row_arr.length - 4).times do |i|
         if row_arr[i].color == color &&
            row_arr[i + 1].color == color &&
            row_arr[i + 2].color == color &&
@@ -97,10 +97,10 @@ class Board
   end
 
   def first_empty_cell(column)
-    return nil unless (0...@row).include?(column) # Spaltenbereich prüfen
+    return nil unless (0...@column).include?(column) # Spaltenbereich prüfen
 
     index = (0...@row).find do |row|
-      @cells[row] && @cells[row][column] && @cells[row][column].color.nil?
+      @cells[row][column]&.color.nil?
     end
     return nil if index.nil?
 
