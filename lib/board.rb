@@ -29,7 +29,7 @@ class Board
   def four_row?(color)
     @row.times do |i|
       row_arr = @cells[i]
-      (row_arr.length - 4).times do |i|
+      (row_arr.length - 3).times do |i|
         if row_arr[i].color == color &&
            row_arr[i + 1].color == color &&
            row_arr[i + 2].color == color &&
