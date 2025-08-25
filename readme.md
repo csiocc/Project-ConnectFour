@@ -5,7 +5,7 @@ This is a Connect Four game built in Ruby as part of The Odin Project curriculum
 Features
 
 - 6x7 Connect Four board.
-- Two-player mode (CLI).
+- Two-player mode.
 - Alternate turns between players.
 - Detects horizontal, vertical, and diagonal wins.
 - Detects draw conditions.
